@@ -56,6 +56,7 @@ def add():
             ]
     form = AddTask()
     if form.validate_on_submit():
+        task.add_new_task(form.description.data, form.project.data, form.due.data)
         return redirect(url_for('add_success'))
     return render_template(
             'add.html',
