@@ -68,12 +68,45 @@ def get_next_task():
             return None
 
 def add_new_task(description, project=None, due=None):
-    if project and due:
+    if project != '' and due != '':
         new_task = tasklib.Task(tw, description=description, project=project, due=due)
-    elif project:
+    elif due != '':
         new_task = tasklib.Task(tw, description=description, due=due)
-    elif due:
+    elif project != '':
         new_task = tasklib.Task(tw, description=description, project=project)
     else:
         new_task = tasklib.Task(tw, description=description)
     new_task.save()
+
+
+def delete_task(task_id):
+    task = tw.tasks.filter(id=task_id)[0]
+    task.delete()
+    task.save()
+
+
+def mark_task_as_done(task_id):
+    task = tw.tasks.filter(id=task_id)[0]
+    task.done()
+    task.save()
+
+
+def progress_task(task_id):
+    # slightly increase priority
+    task = tw.tasks.filter(id=task_id)[0]
+    task['priority'] = float(task['priority']) * 1.2
+    task.save()
+
+
+def skip_task(task_id):
+    # slightly reduce priority
+    task = tw.tasks.filter(id=task_id)[0]
+    task['priority'] = float(task['priority']) * 0.8
+    task.save()
+
+feedback = {
+        "delete": delete_task,
+        "done": mark_task_as_done,
+        "progress": progress_task,
+        "skip": skip_task
+        }
