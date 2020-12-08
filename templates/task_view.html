@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+  <link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{title}}</h1>
+        <p>ID: {{task['id']}}</p>
+        <p>Project: {{task['project']}}</p>
+        {% if task['due'] %}
+        <p>Due: {{task['due']}}</p>
+        {% endif %}
+        <p>Description: {{task['description']}}</p>
+    </div>
+{% endblock %}
+

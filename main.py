@@ -3,6 +3,7 @@ from flask import render_template
 from flask import url_for
 from flask import redirect
 from add import AddTask
+import task
 
 
 app = Flask(
@@ -23,10 +24,10 @@ def home():
             {"name": "Add", "url": url_for('add')},
             ]
     return render_template(
-        "home.html",
+        "task_view.html",
         nav=nav,
         title="Increment",
-        description="An incremental task management application.",
+        task=task.get_next_task()
     )
 
 @app.route('/about')
@@ -40,7 +41,7 @@ def about():
     return render_template(
         "home.html",
         nav=nav,
-        title="About",
+        title="Increment",
         description="An incremental task management application.",
     )
 
