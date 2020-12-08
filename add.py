@@ -8,11 +8,9 @@ class AddTask(FlaskForm):
             [DataRequired()]
             )
     project = StringField(
-            'Project',
-            []
+            'Project'
             )
     due = StringField(
-            'Due date',
-            []
+            'Due date'
             )
     submit = SubmitField('Submit')

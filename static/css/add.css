@@ -60,6 +60,7 @@ input, textarea, select {
 
 select {
   -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 select::after {

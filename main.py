@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import url_for
+from flask import redirect
 from add import AddTask
 
 
@@ -54,7 +55,7 @@ def add():
             ]
     form = AddTask()
     if form.validate_on_submit():
-        return redirect(url_for)
+        return redirect(url_for('add_success'))
     return render_template(
             'add.html',
             nav=nav,
@@ -62,3 +63,18 @@ def add():
             description="Add new task.",
             form=form
             )
+
+@app.route('/add_success')
+def add_success():
+    nav = [
+            {"name": "Home", "url": url_for('home')},
+            {"name": "About", "url": url_for('about')},
+            {"name": "Add", "url": url_for('add')},
+            ]
+    return render_template(
+            'home.html',
+            nav=nav,
+            title="Success!",
+            description="You have successfully submitted a task."
+            )
+
