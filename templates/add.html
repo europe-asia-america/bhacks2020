@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+  <link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/add.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{title}}</h1>
+        <p>{{description}}</p>
+    </div>
+    <div class="formwrapper">
+        <form method="POST" action="/">
+            <div class="form-field">
+                {{ form.description.label }}
+                {{ form.description(size=20) }}
+            </div>
+            <div class="form-field">
+                {{ form.project.label }}
+                {{ form.project }}
+            </div>
+            <div class="form-field">
+                {{ form.due.label }}
+                {{ form.due }}
+            </div>
+            {{ form.submit }}
+        </form>
+    </div>
+{% endblock %}
+
