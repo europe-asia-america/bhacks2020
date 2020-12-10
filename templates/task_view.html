@@ -14,7 +14,7 @@
         {% endif %}
         <p>Description: {{task['description']}}</p>
         <!-- Add feedback buttons -->
-        <form method="POST" action=""{{url_for('home')}}"">
+        <form method="POST" action="{{url_for('home')}}">
             {{ form.csrf_token }}
             {{form.hidden_id}}
             {{form.skip}}
