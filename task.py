@@ -10,13 +10,8 @@ import tzlocal
 import hyperparameters
 import os
 
-RC = os.environ.get('TASKRC') or "~/.taskrc"
-if not os.path.exists(RC):
-    import subprocess
-    subprocess.run(["touch", RC])
-TASK_DATA = os.environ.get('TASK_DATA') or "~/.taskdb"
-if not os.path.exists(TASK_DATA):
-    subprocess.run(["mkdir", TASK_DATA])
+RC = os.environ.get('TASKRC') or ".taskrc"
+TASK_DATA = os.environ.get('TASK_DATA') or ".taskdb"
 tw = TaskWarrior(taskrc_location=RC, data_location=TASK_DATA)
 
 # create a datetime object with tomorrow's date but time as of this moment
