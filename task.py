@@ -11,7 +11,12 @@ import hyperparameters
 import os
 
 RC = os.environ.get('TASKRC') or "~/.taskrc"
-TASK_DATA = os.environ.get('TASK_DATA') or "~/.data/.taskdb"
+if not os.path.exists(RC):
+    from pathlib import Path
+    Path(RC).touch()
+TASK_DATA = os.environ.get('TASK_DATA') or "~/.taskdb"
+if not os.path.exists(TASK_DATA):
+    os.mkdir("~/.task")
 tw = TaskWarrior(taskrc_location=RC, data_location=TASK_DATA)
 
 # create a datetime object with tomorrow's date but time as of this moment
