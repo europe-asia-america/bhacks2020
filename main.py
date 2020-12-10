@@ -64,7 +64,7 @@ def about():
         "home.html",
         nav=nav,
         title="Increment",
-        description="An incremental task management application.",
+        description="A task recommendation system for personal use.",
     )
 
 
@@ -84,7 +84,7 @@ def add():
             'add.html',
             nav=nav,
             title="Add",
-            description="Add new task.",
+            description="Add new task. Description is mandatory.",
             form=form
             )
 
